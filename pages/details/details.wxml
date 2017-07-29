@@ -1,0 +1,62 @@
+<!--pages/details/details.wxml-->
+<view class="pages">
+  <swiper class="decon">
+    <block>
+      <swiper-item>
+        <view class="deMain flex hc fd">
+          <view class="deName">13路</view>
+          <view class="deMsg">29分钟 ｜ 1元 ｜ 11.0公里 ｜ 步行1.8公里</view>
+        </view>
+      </swiper-item>
+    </block>
+  </swiper>
+  <view class="detMain">
+    <view class="start flex vc">
+      <image class="startImg" src="../../img/lvy.png"></image>
+      起点
+    </view>
+    <!-- 乘坐轨迹 -->
+    <view class="course">
+      <!-- 换乘样式 -->
+      <view class="transfer flex vc">
+        <image class="trImg" src="../../img/ren.png"></image>
+        <text>步行268步</text>
+      </view>
+      <!-- 换乘样式End -->
+      <!-- 站点详情 -->
+      <view class="site flex ">
+        <view class="siteL">
+          <image src="../../img/bus.png" mode="widthFix" class="siteImg"></image>
+          <view class="yBall sTop"></view>
+          <view class="yBall sBottom"></view>
+        </view>
+        <view class="siteR">
+          <view class="busName">12路</view>
+          <view class="getOn">
+            <view class="flex vc">
+              <view class="getIcon">上</view>
+              <view class="">平阳路南中环街口</view>
+            </view>
+            <view class="sitNum">
+              3站
+              <image class="sitNumImg" mode="widthFix" src="../../img/jt.png"></image>
+            </view>
+          </view>
+          <view class="getOff">
+            <view class="flex vc">
+              <view class="getIcon">下</view>
+              <view class="">平阳路南中环街口</view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <!-- 站点详情End -->
+    </view>
+    <!-- 乘坐轨迹End -->
+
+    <view class="end flex vc">
+      <image class="endImg" src="../../img/redy.png"></image>
+      终点
+    </view>
+  </view>
+</view>

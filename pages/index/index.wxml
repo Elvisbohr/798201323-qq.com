@@ -1,10 +1,47 @@
 <!--index.wxml-->
-<view class="container">
-  <view  bindtap="bindViewTap" class="userinfo">
-    <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
-    <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+<view class="pages">
+  <view class="head">
+    <image class="weatherBj" src="../../img/weather/wbj1.png"></image>
+    <view class="weather flex">
+      <image src="{{weather.liveData.weaImg}}" mode="widthFix" class="weaImg"></image>
+      <text class="wend">  {{weather.temperature.data}}°</text>
+      <view class="fenl">
+        <view class="wselect"> <text>{{weather.weather.text}}</text> {{weather.weather.data}}</view>
+        <view class="humidity"> <text>{{weather.humidity.text}}</text> {{weather.humidity.data}}</view>
+      </view>
+    </view>
+    <view class="weatBtom flex hb vc">
+      <view class="city">{{weather.city.data}}</view>
+      <view class="wind">风力: <text>{{weather.winddirection.data}} {{weather.windpower.data}}</text></view>
+    </view>
   </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
-  </view>
+  <form>
+    <view class="weatMain flex hc fwrap">
+      <view class="relative">
+        <view class="search flex vc">
+          <image class="locImg" mode="widthFix" src="../../img/weather/location.png"></image>
+          <input bindinput="bindInput" placeholder="请输入起始地" value="{{startPlaceVal}}" />
+        </view>
+        <scroll-view wx:if="{{hotWord0}}" class="searchList" scroll-y>
+          <view bindtouchstart="bindSearch" data-keywords="{{i.name}}" class="text_box" wx:for="{{tips}}" wx:for-item="i">
+            {{i.name}}
+          </view>
+        </scroll-view>
+      </view>
+      <view class="relative">
+        <view class="search flex vc">
+          <image class="locImg" mode="widthFix" src="../../img/weather/location.png"></image>
+          <input placeholder="请输入目的地" />
+        </view>
+        <scroll-view wx:if="{{hotWord1}}" class="searchList" scroll-y>
+          <view bindtouchstart="bindSearch" data-keywords="{{i.name}}" class="text_box" wx:for="{{tips}}" wx:for-item="i">
+            {{i.name}}
+          </view>
+        </scroll-view>
+      </view>
+      <button class="query">查询</button>
+
+    </view>
+  </form>
+  <image class="gslogo" src="../../img/weather/gslogo.png"></image>
 </view>

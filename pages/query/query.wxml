@@ -1,0 +1,44 @@
+<!--pages/query/query.wxml-->
+<view class="pages">
+  <view class="queryMain">
+    <swiper class="qHead">
+      <block wx:for="{{advertising}}">
+        <swiper-item>
+          <image src="{{item}}" class="advertising" />
+        </swiper-item>
+      </block>
+    </swiper>
+    <!-- 公交换乘策略 -->
+    <view class="qPath ">
+      <view class="pathPitch  flex vc hc">
+          最快捷模式
+          <image class="jt p10" mode="widthFix" src="../../img/jt.png"></image>
+        </view>
+      <block wx:for="{{strategy}}">
+        <view class="pathList  flex vc hb" wx:if="{{pathList}}">
+          {{item.name}}
+          <image class="jt" mode="widthFix" src="../../img/duig.png"></image>
+        </view>
+      </block>
+    </view>
+    <!-- 公交换乘策略End -->
+    <!-- 公交线路 -->
+    <view class="circuit">
+        <view class="cirList flex hc vc">
+            <view class="cirL">
+              <view class="cTj">最快</view>
+              <view class="cTime">23分钟</view>
+              <view class="cNum">4站</view>
+            </view>
+            <view class="cirR">
+              <view class="cName">13路</view>
+              <view class="cMsg">1元 ｜ 11.0公里 ｜ 步行1.8公里</view>
+              <view class="cScz">
+                <text>上车站</text>高新街平阳路口
+              </view>
+            </view>
+        </view>
+    </view>
+    <!-- 公交线路End -->    
+  </view>
+</view>

@@ -8,3 +8,35 @@
   padding: 200rpx 0;
   box-sizing: border-box;
 } 
+.flex{
+  display: -webkit-flex;
+  display: flex;
+}
+/* 垂直居中 */
+.flex.vc{
+  align-items: center;
+}
+/* 水平居中 */
+.flex.hc{
+  justify-content: center;
+}
+/* 两端对齐(有空隙) */
+.flex.ha{
+  justify-content: space-around;
+}
+/* 两端对齐 */
+.flex.hb{
+  justify-content: space-between;
+}
+/* 换行 */
+.flex.fwrap{  
+  flex-wrap: wrap;
+}
+/* 排列方向(垂直) */
+.flex.fd{
+  flex-direction: column;
+}
+/* 默认不放大缩小 */
+.flex.fshrink{
+  flex-shrink: 0;
+}

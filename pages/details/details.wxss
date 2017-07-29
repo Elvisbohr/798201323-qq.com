@@ -1,0 +1,136 @@
+/* pages/details/details.wxss */
+
+page {
+  background: #f0eff5;
+}
+
+/* 头部导航 */
+
+.decon {
+  height: 175rpx;
+}
+
+.deMain {
+  width: 100%;
+  height: 165rpx;
+  margin-top: 10rpx;
+  background: #fff;
+  padding: 0 30rpx;
+  border-top: 1px solid #dcdcdc;
+  border-bottom: 1px solid #dcdcdc;
+  box-sizing: border-box;
+}
+
+.deMsg {
+  font-size: 24rpx;
+  color: #707070;
+}
+
+/* 中间详情 */
+
+.detMain {
+  margin-top: 16rpx;
+}
+
+.start, .end {
+  width: 100%;
+  height: 100rpx;
+  padding-left: 76rpx;
+  background: #fff;
+  font-size: 36rpx;
+  font-weight: bold;
+  border-top: 1px solid #dcdcdc;
+  border-bottom: 1px solid #dcdcdc;
+}
+
+.startImg, .endImg {
+  width: 30rpx;
+  height: 30rpx;
+  padding-right: 40rpx;
+}
+
+/* 中间换乘样式 */
+.transfer {
+  background: #f7f7f8;
+  height: 90rpx;
+  padding-left: 30rpx;
+  font-size: 28rpx;
+}
+
+.trImg {
+  width: 35rpx;
+  height: 35rpx;
+  padding-right: 80rpx; 
+}
+/* 站点详情 */
+.site{
+  padding: 50rpx 50rpx 50rpx 30rpx;
+  background: #fff; 
+}
+.siteImg{
+  width: 30rpx;
+   
+}
+.siteL{
+  border-right: 1px solid #fba72f;
+  position: relative;
+  display: -webkit-inline-flex;
+  display: inline-flex;
+  align-items: center;
+  padding-right: 30rpx; 
+}
+.siteR{
+  padding-left: 30rpx;
+  /* height: 160rpx; */
+}
+.yBall{
+  background: #fff;
+  border: 2px solid #fba72f;
+  width: 30rpx;
+  height: 30rpx;
+  box-sizing: border-box;
+  border-radius: 15rpx;
+}
+.sTop{
+  position: absolute;
+  top: -29rpx;
+  right: -15rpx;
+}
+.sBottom{
+  position: absolute;
+  bottom: -29rpx;
+  right: -15rpx;
+}
+.busName{
+  padding: 8rpx 10rpx;
+  color: #fff;
+  background: #fba72f;
+  font-size: 28rpx;
+  font-weight: bold;
+  border-radius: 6rpx;
+  margin-bottom: 15rpx;
+}
+.getOn,.getOff{
+  margin-top: 15rpx;
+  font-size: 26rpx;
+  display: -webkit-inline-flex;
+  display: inline-flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between
+}
+.getIcon{
+  width: 50rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  text-align: center;
+  background: #fba72f;
+  color: #fff;
+  border-radius: 25rpx;
+  margin-right: 30rpx;
+}
+
+.sitNumImg{
+  width: 20rpx;
+  
+}
