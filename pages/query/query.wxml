@@ -11,9 +11,9 @@
     <!-- 公交换乘策略 -->
     <view class="qPath ">
       <view class="pathPitch  flex vc hc">
-          最快捷模式
-          <image class="jt p10" mode="widthFix" src="../../img/jt.png"></image>
-        </view>
+        最快捷模式
+        <image class="jt p10" mode="widthFix" src="../../img/jt.png"></image>
+      </view>
       <block wx:for="{{strategy}}">
         <view class="pathList  flex vc hb" wx:if="{{pathList}}">
           {{item.name}}
@@ -23,22 +23,26 @@
     </view>
     <!-- 公交换乘策略End -->
     <!-- 公交线路 -->
-    <view class="circuit">
-        <view class="cirList flex hc vc">
-            <view class="cirL">
-              <view class="cTj">最快</view>
-              <view class="cTime">23分钟</view>
-              <view class="cNum">4站</view>
-            </view>
-            <view class="cirR">
-              <view class="cName">13路</view>
-              <view class="cMsg">1元 ｜ 11.0公里 ｜ 步行1.8公里</view>
-              <view class="cScz">
-                <text>上车站</text>高新街平阳路口
-              </view>
-            </view>
+    <view class="circuit"  wx:for="{{transits}}" wx:for-item="i">
+      <view class="cirList flex hc vc">
+        <view class="cirL">
+          <view class="cTj">最快</view>
+          <view class="cTime">{{i.tranTime}}</view>
+          <view class="cNum">{{i.standNum}}站</view>
         </view>
+        <view class="cirR">
+          <view class="cName">
+            <text class="text_item" wx:for="{{i.transport}}" wx:for-item="j">
+              {{j}}
+            </text>
+          </view>
+          <view class="cMsg">{{i.cost}} ｜ {{i.distance/1000}}公里 ｜ 步行{{i.walking_distance}}米</view>
+          <view class="cScz">
+            <text>上车站</text>{{i.departureStop}}
+          </view>
+        </view>
+      </view>
     </view>
-    <!-- 公交线路End -->    
+    <!-- 公交线路End -->
   </view>
 </view>

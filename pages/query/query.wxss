@@ -67,6 +67,8 @@ page{
   padding-left: 30rpx;
 }
 .cName{
+  display: -webkit-inline-flex;
+  display: inline-flex;
   font-size: 32rpx;
   font-weight: bold;
 }
