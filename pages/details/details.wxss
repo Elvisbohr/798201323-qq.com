@@ -20,7 +20,10 @@ page {
   border-bottom: 1px solid #dcdcdc;
   box-sizing: border-box;
 }
-
+.deName{
+  display: -webkit-inline-flex;
+  display: inline-flex;
+}
 .deMsg {
   font-size: 24rpx;
   color: #707070;
@@ -78,6 +81,7 @@ page {
   display: inline-flex;
   align-items: center;
   padding-right: 30rpx; 
+  flex-shrink: 0;
 }
 .siteR{
   padding-left: 30rpx;
@@ -109,6 +113,7 @@ page {
   font-weight: bold;
   border-radius: 6rpx;
   margin-bottom: 15rpx;
+  display: inline-block;
 }
 .getOn,.getOff{
   margin-top: 15rpx;
@@ -124,12 +129,20 @@ page {
   height: 50rpx;
   line-height: 50rpx;
   text-align: center;
-  background: #fba72f;
+ 
   color: #fff;
   border-radius: 25rpx;
   margin-right: 30rpx;
 }
-
+.icony{
+ background: #fba72f;
+}
+.geryuan{
+  width: 8rpx;
+  height: 8rpx;
+  background: #fba72f;
+  border-radius: 4rpx;
+}
 .sitNumImg{
   width: 20rpx;
   

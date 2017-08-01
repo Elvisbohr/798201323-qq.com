@@ -1,6 +1,7 @@
 // pages/query/query.js
 var amapFile = require('../../libs/amap-wx.js');
 var config = require('../../libs/config.js');
+var app = getApp();
 Page({
   data: {
     advertising: [
@@ -78,7 +79,7 @@ Page({
         that.setData({
           transits: transits
         });
-
+        app.globalData.transits = transits; //赋值到全局变量里
       },
       fail: function (info) {
 

@@ -1,11 +1,15 @@
 <!--pages/details/details.wxml-->
 <view class="pages">
-  <swiper class="decon">
-    <block>
-      <swiper-item>
-        <view class="deMain flex hc fd">
-          <view class="deName">13路</view>
-          <view class="deMsg">29分钟 ｜ 1元 ｜ 11.0公里 ｜ 步行1.8公里</view>
+  <swiper class="decon" indicator-dots="true">
+    <block wx:for="{{transits}}" wx:for-item="i">
+      <swiper-item >
+        <view class="deMain flex fd">
+          <view class="deName"  wx:for="{{i.transport}}" wx:for-item="j"> 
+            <text class="text_item" wx:for="{{i.transport}}" wx:for-item="j">
+              {{j}}
+            </text>
+          </view>
+          <view class="deMsg">{{i.tranTime}}｜ {{i.cost}}  {{i.distance/1000}}公里 ｜ 步行{{i.walking_distance}}米</view>
         </view>
       </swiper-item>
     </block>
@@ -34,12 +38,20 @@
           <view class="busName">12路</view>
           <view class="getOn">
             <view class="flex vc">
-              <view class="getIcon">上</view>
+              <view class="getIcon icony">上</view>
               <view class="">平阳路南中环街口</view>
             </view>
             <view class="sitNum">
               3站
               <image class="sitNumImg" mode="widthFix" src="../../img/jt.png"></image>
+            </view>
+          </view>
+          <view class="getMiddle">
+            <view class="flex vc">
+              <view class="getIcon flex hc vc">
+                <view class="geryuan"></view>
+              </view>
+              <view class="">平阳路南中环街口</view>
             </view>
           </view>
           <view class="getOff">

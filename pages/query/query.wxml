@@ -23,7 +23,7 @@
     </view>
     <!-- 公交换乘策略End -->
     <!-- 公交线路 -->
-    <view class="circuit"  wx:for="{{transits}}" wx:for-item="i">
+    <navigator url="../details/details" class="circuit"  wx:for="{{transits}}" wx:for-item="i">
       <view class="cirList flex hc vc">
         <view class="cirL">
           <view class="cTj">最快</view>
@@ -42,7 +42,7 @@
           </view>
         </view>
       </view>
-    </view>
+    </navigator>
     <!-- 公交线路End -->
   </view>
 </view>
