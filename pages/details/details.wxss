@@ -143,6 +143,17 @@ page {
   background: #fba72f;
   border-radius: 4rpx;
 }
+.getMiddle{
+  margin-bottom: 20rpx;
+  overflow: hidden;
+}
+.mList{
+  font-size: 24rpx;
+  /* height: 50rpx; */
+  /* line-height: 50rpx; */
+  color: #535353;
+  margin-top: 20rpx;
+}
 .sitNumImg{
   width: 20rpx;
   

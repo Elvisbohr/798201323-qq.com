@@ -2,73 +2,79 @@
 <view class="pages">
   <swiper class="decon" indicator-dots="true">
     <block wx:for="{{transits}}" wx:for-item="i">
-      <swiper-item >
+      <swiper-item>
         <view class="deMain flex fd">
-          <view class="deName"  wx:for="{{i.transport}}" wx:for-item="j"> 
+          <view class="deName">
             <text class="text_item" wx:for="{{i.transport}}" wx:for-item="j">
               {{j}}
             </text>
           </view>
-          <view class="deMsg">{{i.tranTime}}｜ {{i.cost}}  {{i.distance/1000}}公里 ｜ 步行{{i.walking_distance}}米</view>
+          <view class="deMsg">{{i.tranTime}}｜ {{i.cost}} {{i.distance/1000}}公里 ｜ 步行{{i.walking_distance}}米</view>
         </view>
       </swiper-item>
     </block>
   </swiper>
   <view class="detMain">
-    <view class="start flex vc">
-      <image class="startImg" src="../../img/lvy.png"></image>
-      起点
-    </view>
-    <!-- 乘坐轨迹 -->
-    <view class="course">
-      <!-- 换乘样式 -->
-      <view class="transfer flex vc">
-        <image class="trImg" src="../../img/ren.png"></image>
-        <text>步行268步</text>
+    <block wx:for="{{transits}}" wx:for-item="i">
+      <view class="start flex vc">
+        <image class="startImg" src="../../img/lvy.png"></image>
+        起点{{i.transport}}
       </view>
-      <!-- 换乘样式End -->
-      <!-- 站点详情 -->
-      <view class="site flex ">
-        <view class="siteL">
-          <image src="../../img/bus.png" mode="widthFix" class="siteImg"></image>
-          <view class="yBall sTop"></view>
-          <view class="yBall sBottom"></view>
-        </view>
-        <view class="siteR">
-          <view class="busName">12路</view>
-          <view class="getOn">
-            <view class="flex vc">
-              <view class="getIcon icony">上</view>
-              <view class="">平阳路南中环街口</view>
-            </view>
-            <view class="sitNum">
-              3站
-              <image class="sitNumImg" mode="widthFix" src="../../img/jt.png"></image>
-            </view>
+      <!-- 乘坐轨迹 -->
+      <view class="course">
+        <block  wx:for="{{i.segments}}" wx:for-item="j">
+          <!-- 换乘样式 -->
+          <view class="transfer flex vc">
+            <image class="trImg" src="../../img/ren.png"></image>
+            <text>{{j.describe}}</text>
           </view>
-          <view class="getMiddle">
-            <view class="flex vc">
-              <view class="getIcon flex hc vc">
-                <view class="geryuan"></view>
-              </view>
-              <view class="">平阳路南中环街口</view>
-            </view>
-          </view>
-          <view class="getOff">
-            <view class="flex vc">
-              <view class="getIcon">下</view>
-              <view class="">平阳路南中环街口</view>
-            </view>
-          </view>
-        </view>
-      </view>
-      <!-- 站点详情End -->
-    </view>
-    <!-- 乘坐轨迹End -->
+          <!-- 换乘样式End -->
+          <!-- 站点详情 -->
+          <view class="site flex " wx:for="{{i.transport}}" wx:for-item="n">
 
-    <view class="end flex vc">
-      <image class="endImg" src="../../img/redy.png"></image>
-      终点
-    </view>
+            <view class="siteL">
+              <image src="../../img/bus.png" mode="widthFix" class="siteImg"></image>
+              <view class="yBall sTop"></view>
+              <view class="yBall sBottom"></view>
+            </view>
+            <view class="siteR">
+              <view class="busName" >{{n}}</view>
+              <view class="getOn">
+                <view class="flex vc">
+                  <view class="getIcon icony">上</view>
+                  <view class="">{{j.departureStop}}</view>
+                </view>
+                <view class="sitNum">
+                  3站
+                  <image class="sitNumImg" mode="widthFix" src="../../img/jt.png"></image>
+                </view>
+              </view>
+              <view class="getMiddle">
+                <view class="mList flex vc">
+                  <view class="getIcon flex hc vc">
+                    <view class="geryuan"></view>
+                  </view>
+                  <view class="">平阳路南中环街口</view>
+                </view>
+              </view>
+              <view class="getOff">
+                <view class="flex vc">
+                  <view class="getIcon icony">下</view>
+                  <view class="">{{j.arrivalStop}}</view>
+                </view>
+              </view>
+            </view>
+
+          </view>
+        </block>
+          <!-- 站点详情End -->
+      </view>
+      <!-- 乘坐轨迹End -->
+
+      <view class="end flex vc">
+        <image class="endImg" src="../../img/redy.png"></image>
+        终点
+      </view>
+      </block>
   </view>
 </view>

@@ -1,8 +1,8 @@
 {
-  "pages":["pages/details/details",
+  "pages":["pages/query/query",
     "pages/index/index",
-    "pages/query/query",
     
+    "pages/details/details",
     "pages/logs/logs"
   ],
   "window":{
