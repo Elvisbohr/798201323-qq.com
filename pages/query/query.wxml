@@ -9,11 +9,15 @@
       </block>
     </swiper>
     <!-- 公交换乘策略 -->
+    <view class="relative">
     <view class="qPath ">
       <view class="pathPitch  flex vc hc">
         最快捷模式
         <image class="jt p10" mode="widthFix" src="../../img/jt.png"></image>
       </view>
+      
+    </view>
+    <view class="pitchMain">
       <block wx:for="{{strategy}}">
         <view class="pathList  flex vc hb" wx:if="{{pathList}}">
           {{item.name}}
@@ -21,9 +25,10 @@
         </view>
       </block>
     </view>
+    </view>
     <!-- 公交换乘策略End -->
     <!-- 公交线路 -->
-    <navigator url="../details/details" class="circuit"  wx:for="{{transits}}" wx:for-item="i">
+    <navigator url="../details/details?busNum={{index}}" class="circuit"  wx:for="{{transits}}" wx:for-item="i">
       <view class="cirList flex hc vc">
         <view class="cirL">
           <view class="cTj">最快</view>

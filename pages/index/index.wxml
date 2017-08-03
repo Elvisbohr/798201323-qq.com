@@ -20,7 +20,7 @@
       <view class="relative">
         <view class="search flex vc">
           <image class="locImg" mode="widthFix" src="../../img/weather/location.png"></image>
-          <input name="start_place" data-class-name="hot_word0" bindinput="bindInput" placeholder="请输入起始地" value="{{startPlaceVal}}" />
+          <input name="start_place" data-class-name="hot_word0" bindinput="bindKeyInput" bindblur="inputOnFocus" placeholder="请输入起始地" value="{{startPlaceVal}}" />
         </view>
         <scroll-view wx:if="{{hotWord0}}" class="searchList" scroll-y>
           <view class="text_box"  bindtap="setInputVal" wx:for="{{hotWordArr0}}" wx:for-item="dataItem" data-text="{{dataItem}}" data-index="{{index}}" data-input-class="start_place">
@@ -31,7 +31,7 @@
       <view class="relative">
         <view class="search flex vc">
           <image class="locImg" mode="widthFix" src="../../img/weather/location.png"></image>
-          <input name="end_place"  bindinput="bindKeyInput" placeholder="请输入目的地" bindfocus="inputOnFocus"  data-class-name="hot_word1" value="{{endPlaceVal}}" />
+          <input name="end_place"  bindinput="bindKeyInput" placeholder="请输入目的地" bindblur="inputOnFocus"  data-class-name="hot_word1" value="{{endPlaceVal}}" />
         </view>
         <scroll-view wx:if="{{hotWord1}}" class="searchList" scroll-y>
           <view bindtap="setInputVal" wx:for="{{hotWordArr1}}" wx:for-item="dataItem" data-text="{{dataItem}}" data-index="{{index}}" data-input-class="end_place" class="text_box">

@@ -16,7 +16,9 @@ Page({
       { num: '3', name: '最少步行模式' },
       { num: '4', name: '不乘地铁模式' },
 
-    ]
+    ],
+    pathList: true,
+    bindStrategy: 0, //默认公交换乘策略为 "0：最快捷模式"
   },
 
   /**
@@ -30,6 +32,7 @@ Page({
         that.setData({
           queryLocatuin: res.data,
         })
+        console.log(11111)
         that.getNavBus();
       }
     })
@@ -39,6 +42,7 @@ Page({
   // 公交策略
   getNavBus: function () {
     var that = this;
+    var bindStrategy = that.data.bindStrategy;  //获取选择的公交换乘策略
     var key = config.Config.key;
     var myAmapFun = new amapFile.AMapWX({ key: key });
     var origin = that.data.queryLocatuin.startLocation
@@ -47,6 +51,7 @@ Page({
       origin: that.data.queryLocatuin.startLocation,
       destination: that.data.queryLocatuin.endLocation,
       city: '太原市',
+      strategy: bindStrategy,
       success: function (data) {
         // console.log(data)
         if (data && data.transits) {
@@ -69,7 +74,7 @@ Page({
                 var sname = name.replace(/\(.*\)$/g, "");   //用正则判断去掉()里的内容
                 // console.log(sname)
                 if (j !== 0) {
-                  sname = '/' + sname;
+                  sname = '-->' + sname;
                 }
                 transits[i].transport.push(sname);
               }

@@ -130,4 +130,6 @@
   background: #fff;
   padding: 0 30rpx;
   border: 1px solid #fdbe15;
+  box-sizing: border-box;
+  left: 10%;
 }

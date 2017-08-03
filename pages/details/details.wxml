@@ -1,6 +1,6 @@
 <!--pages/details/details.wxml-->
 <view class="pages">
-  <swiper class="decon" indicator-dots="true">
+  <swiper class="decon" indicator-dots="true" bindchange="decon" current="{{busNum}}">
     <block wx:for="{{transits}}" wx:for-item="i">
       <swiper-item>
         <view class="deMain flex fd">
@@ -15,66 +15,71 @@
     </block>
   </swiper>
   <view class="detMain">
-    <block wx:for="{{transits}}" wx:for-item="i">
+    <block>
       <view class="start flex vc">
         <image class="startImg" src="../../img/lvy.png"></image>
-        起点{{i.transport}}
+        <text>起点</text>
       </view>
       <!-- 乘坐轨迹 -->
       <view class="course">
-        <block  wx:for="{{i.segments}}" wx:for-item="j">
+        <block wx:for="{{circuit.segments}}" wx:for-item="i">
           <!-- 换乘样式 -->
           <view class="transfer flex vc">
             <image class="trImg" src="../../img/ren.png"></image>
-            <text>{{j.describe}}</text>
+            <text>{{i.describe}}</text>
           </view>
           <!-- 换乘样式End -->
           <!-- 站点详情 -->
-          <view class="site flex " wx:for="{{i.transport}}" wx:for-item="n">
-
+          <!-- 如果站点数量为空就隐藏掉 -->
+          <block wx:if="{{i.viaNum}}">    
+          <view class="site flex ">
             <view class="siteL">
               <image src="../../img/bus.png" mode="widthFix" class="siteImg"></image>
               <view class="yBall sTop"></view>
               <view class="yBall sBottom"></view>
             </view>
             <view class="siteR">
-              <view class="busName" >{{n}}</view>
+              <view class="busName">{{circuit.site[index]}}</view>
               <view class="getOn">
                 <view class="flex vc">
                   <view class="getIcon icony">上</view>
-                  <view class="">{{j.departureStop}}</view>
+                  <view class="">{{i.departureStop}}</view>
                 </view>
-                <view class="sitNum">
-                  3站
+                <view class="sitNum" bindtap="details" data-details="{{index}}">
+                  {{i.viaNum}}站
                   <image class="sitNumImg" mode="widthFix" src="../../img/jt.png"></image>
                 </view>
               </view>
-              <view class="getMiddle">
-                <view class="mList flex vc">
-                  <view class="getIcon flex hc vc">
-                    <view class="geryuan"></view>
+              <view class="getMiddle"  wx:if="{{middle}}">
+                <block wx:for="{{i.viaStops}}" wx:for-item="v"  wx:if="{{details}}">
+                  <view class="mList flex vc">
+                    <view class="getIcon flex hc vc">
+                      <view class="geryuan"></view>
+                    </view>
+                    <view class="">{{v}}</view>
                   </view>
-                  <view class="">平阳路南中环街口</view>
-                </view>
+                </block>
               </view>
               <view class="getOff">
                 <view class="flex vc">
                   <view class="getIcon icony">下</view>
-                  <view class="">{{j.arrivalStop}}</view>
+                  <view class="">{{i.arrivalStop}}</view>
                 </view>
               </view>
             </view>
 
           </view>
+          </block>
+
         </block>
-          <!-- 站点详情End -->
+        <!-- 站点详情End -->
       </view>
       <!-- 乘坐轨迹End -->
 
       <view class="end flex vc">
         <image class="endImg" src="../../img/redy.png"></image>
-        终点
+        <text>终点 </text>
       </view>
-      </block>
+    </block>
   </view>
 </view>
