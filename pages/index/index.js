@@ -24,16 +24,42 @@ Page({
         console.log(data)
         var weather = data,
           allWeather = app.globalData.allWeather;
+          //更改图标
         for (var i = 0; i < allWeather.length; i++) {
           if (weather.liveData.weather == allWeather[i]) {
             weather.liveData["weaImg"] = "../../img/weather/w" + (i + 1) + ".png";
-            that.setData({
-              weather: weather,
-              weatherShow: false
-            })
-          }
+          };           
         }
-        //更改图标
+        // 更改背景
+        if (weather.liveData.weather == '晴') {
+          weather.liveData["wbjImg"] = "../../img/weather/wbj1.png";
+        } else if (weather.liveData.weather == '阴' || weather.liveData.weather == '多云') {
+          weather.liveData["wbjImg"] = "../../img/weather/wbj2.png";
+        } else if (weather.liveData.weather == '雷阵雨' || '雷阵雨并伴有冰雹') {
+          weather.liveData["wbjImg"] = "../../img/weather/wbj3.png";
+        } else if (weather.liveData.weather == '大雨' || weather.liveData.weather == '暴雨' || weather.liveData.weather == '大暴雨' || weather.liveData.weather == '特大暴雨' || weather.liveData.weather == '冻雨' || weather.liveData.weather == '小雨- 中雨' || weather.liveData.weather == '中雨- 大雨' || weather.liveData.weather == '大雨- 暴雨' || weather.liveData.weather == '暴雨- 大暴雨' || weather.liveData.weather == '大暴雨- 特大暴雨') {
+          weather.liveData["wbjImg"] = "../../img/weather/wbj4.png";
+        } else if (weather.liveData.weather == '阵雨' || weather.liveData.weather == '雨夹雪' || weather.liveData.weather == ' 小雨' || weather.liveData.weather ==  '中雨') {
+          weather.liveData["wbjImg"] = "../../img/weather/wbj5.png";
+        } else if (weather.liveData.weather == '阵雪' || weather.liveData.weather == '小雪' || weather.liveData.weather == '中雪' || weather.liveData.weather == '大雪' || weather.liveData.weather == '暴雪' || weather.liveData.weather == '小雪- 中雪' || weather.liveData.weather == '中雪- 大雪' || weather.liveData.weather == '大雪- 暴雪') {
+          weather.liveData["wbjImg"] = "../../img/weather/wbj6.png";
+        } else if (weather.liveData.weather == '雾') {
+          weather.liveData["wbjImg"] = "../../img/weather/wbj7.png";
+        } else if (weather.liveData.weather == '沙尘暴' || weather.liveData.weather == '强沙尘暴') {
+          weather.liveData["wbjImg"] = "../../img/weather/wbj8.png";
+        } else if (weather.liveData.weather == '浮尘' || weather.liveData.weather == '扬沙') {
+          weather.liveData["wbjImg"] = "../../img/weather/wbj9.png";
+        } else if (weather.liveData.weather == '龙卷风' || weather.liveData.weather == '飑') {
+          weather.liveData["wbjImg"] = "../../img/weather/wbj10.png";
+        } else if (weather.liveData.weather == '弱高吹雪') {
+          weather.liveData["wbjImg"] = "../../img/weather/wbj11.png";
+        } else if (weather.liveData.weather == '轻霾' || weather.liveData.weather ==  '霾') {
+          weather.liveData["wbjImg"] = "../../img/weather/wbj12.png";
+        }
+        that.setData({
+            weather: weather,
+          })
+        
       },
       fail: function (info) {
         wx.showModal({ title: info.errMsg })
@@ -94,6 +120,7 @@ Page({
 
     } else if (inputClass == "end_place") {
       var endLocation = that.data.hotWordLocation1[i]; //查找到当前点击的输入提示框的坐标
+      console.log(endLocation)
       that.setData({
         endPlaceVal: text,
         endLocation: endLocation,
@@ -102,21 +129,14 @@ Page({
 
     }
   },
-  //热词搜索
-  inputOnFocus: function (e) {
-    //获取当前input框的val值
-    var value = e.detail.value;
-    //获取当前input框的下标值值
-    var curIndex = e.currentTarget.dataset.className;
-    this.hotWordsSearch(value, curIndex)
-  },
+  
   bindKeyInput: function (e) {
     var that = this;
     //获取当前input框的val值
     var value = e.detail.value;
     //获取当前input框的下标值值
     var curIndex = e.currentTarget.dataset.className;
-    this.hotWordsSearch(value, curIndex)
+    this.hotWordsSearch(value, curIndex);
     if (curIndex == "hot_word0") {
       that.setData({
         startPlaceVal: value
@@ -162,7 +182,7 @@ Page({
             //判断是哪个框的搜索结果
             if (curTag == "hot_word0") {
               that.setData({
-                hotWord0: false
+                hotWord0: false,
               });
             } else if (curTag == "hot_word1") {
               that.setData({
@@ -173,6 +193,26 @@ Page({
         }
       }
     })
+  },
+  //热词搜索
+  inputOnFocus: function (e) {
+    var that = this;
+    //获取当前input框的val值
+    var value = e.detail.value;
+    //获取当前input框的下标值值
+    var curIndex = e.currentTarget.dataset.className;
+    // this.hotWordsSearch(value, curIndex);
+    if (curIndex == "hot_word0") {
+      that.setData({
+        // startPlaceVal: value,
+        hotWord0: false,
+      })
+    } else if (curIndex == "hot_word1") {
+      that.setData({
+        // endPlaceVal: value,
+        hotWord1: false,
+      })
+    }
   },
   // 点击查询跳页面
   bindSearch: function () {
@@ -196,7 +236,8 @@ Page({
       if (startLocation == '' || startLocation == undefined) {
         startPlaceVal = that.data.hotWordArr0[0]
         startLocation = that.data.hotWordLocation0[0];
-        console.log('请输入目的地坐标')
+        console.log('请输入出发地坐标');
+        console.log(startLocation)
 
       } else if (endLocation == '' || endLocation == undefined) {
         endPlaceVal = that.data.hotWordArr1[0]
@@ -204,7 +245,8 @@ Page({
         that.setData({
           endLocation: endLocation,
         })
-        console.log('请输入目的地坐标')
+        console.log('请输入目的地坐标');
+        console.log(endLocation);
       } 
 
         var queryLocatuin = {   //获取成对象
@@ -225,6 +267,11 @@ Page({
         })
     
     }
+    wx.showToast({
+      title: msg,
+      icon: 'loading',
+      duration: 2000
+    })
   }
 
 })

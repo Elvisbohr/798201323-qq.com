@@ -8,25 +8,33 @@ Page({
   //点击切换显示全部站点
   details:function(e){
     var that = this;
-    // console.log(e)
-    var details = that.data.details;
+    // console.log(e.currentTarget.dataset.num)
+    var num = e.currentTarget.dataset.num;  //获取他点击的是第几个
+    var circuit = that.data.circuit;  //声明查找出来的数组
+    // console.log(circuit)
+    // var s = circuit.segments.find(function (v) {    //根据唯一标识查找数组里唯一的元素
+    //   return v.stopsNum == true;
+    // })
+    // s.stopsNum = false;
+    var stopsNum = circuit.segments[num].stopsNum;  //声明站数信息
+    circuit.segments[num].stopsNum = !stopsNum;   //点击切换当前是显示还是隐藏
+    // console.log(s)
     that.setData({
-      details: (!that.data.details)
+      circuit: circuit,
     })
   },
   decon:function(e){
     
     var that = this;
     var num = e.detail.current;
-    console.log(num);
+    // console.log(num);
     that.getBusNum(num);
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(1111111111)
-    console.log(options.busNum)
+    // console.log(options.busNum)
     var that = this;
     var transits = app.globalData.transits; //获取全局的所以乘车线路
     var busNum = options.busNum
@@ -41,14 +49,16 @@ Page({
   getBusNum:function(num){
     var that = this;
     var transits = app.globalData.transits; //获取全局里的所有乘车线路
-    console.log(transits)
+    // console.log(transits)
     var busNum = num;
-    console.log(busNum)
+    // console.log(busNum)
     var circuit = transits[busNum]  //获取当前的乘车线路的详细信息
-    console.log(circuit);
+    // console.log(circuit);
     var segments = circuit.segments   //获取所有换乘路段列表
     for (var i = 0; i < segments.length; i++){
-      // segments[j].bus && segments[j].bus.buslines && segments[j].bus.buslines[0] && segments[j].bus.buslines[0].name
+      segments[i].stopsNum = false;
+      var stopsNum = segments[i].stopsNum;
+      // console.log(stopsNum)
       // console.log(segments[i].walking.steps)
       var steps = segments[i].walking.steps;  //什么该导航路段的数组方便下面遍历
       var walk = segments[i].walking.steps[steps.length-1].instruction;
@@ -66,9 +76,9 @@ Page({
         var viaStopsName = [];    //声明一个此段途经公交站点列表名称的数组
         var viaStops = segments[i].bus.buslines[0].via_stops;   //找到数组里面公交站点是数组准备循环找name
         for (var v = 0; v < viaStops.length;v++){          
-          console.log(viaStops[v].name);
+          // console.log(viaStops[v].name);
           viaStopsName.push(viaStops[v].name);  //往数组的末尾添加一个或多个元素{push}
-          console.log(viaStopsName)
+          // console.log(viaStopsName)
         }
         segments[i].viaStops = viaStopsName;  //将途经的公交站名称放入新的数组里
         

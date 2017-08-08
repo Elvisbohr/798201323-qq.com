@@ -1,13 +1,13 @@
 <!--index.wxml-->
 <view class="pages">
   <view class="head">
-    <image class="weatherBj" src="../../img/weather/wbj1.png"></image>
+    <image class="weatherBj" src="{{weather.liveData.wbjImg}}"></image>
     <view class="weather flex">
-      <image src="{{weather.liveData.weaImg}}" mode="widthFix" class="weaImg"></image>
+      <image src="{{weather.liveData.weaImg}}" class="weaImg"></image>
       <text class="wend">  {{weather.temperature.data}}°</text>
       <view class="fenl">
-        <view class="wselect"> <text>{{weather.weather.text}}</text> {{weather.weather.data}}</view>
-        <view class="humidity"> <text>{{weather.humidity.text}}</text> {{weather.humidity.data}}</view>
+        <view class="wselect"> <text>{{weather.weather.text}}:</text> {{weather.weather.data}}</view>
+        <view class="humidity"> <text>{{weather.humidity.text}}:</text> {{weather.humidity.data}}</view>
       </view>
     </view>
     <view class="weatBtom flex hb vc">

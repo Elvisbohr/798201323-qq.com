@@ -21,7 +21,8 @@
 }
 
 .weather .weaImg {
-  width: 60rpx;
+  width: 70rpx;
+  height: 70rpx;
   padding-left: 44rpx;
 }
 
@@ -116,7 +117,7 @@
 /* 搜索框 */
 
 .text_box {
-  border-bottom: 1px solid #c3c3c3;
+  /* border-bottom: 1px solid #c3c3c3; */
   height: 60rpx;
   line-height: 60rpx;
 }
@@ -129,7 +130,8 @@
   z-index: 99;
   background: #fff;
   padding: 0 30rpx;
-  border: 1px solid #fdbe15;
+  border: 1px solid #dcdcdc;
+  box-shadow:2px 2px 5px #dcdcdc;
   box-sizing: border-box;
   left: 10%;
 }

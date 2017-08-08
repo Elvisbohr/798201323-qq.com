@@ -7,12 +7,12 @@ page {
 /* 头部导航 */
 
 .decon {
-  height: 175rpx;
+  height: 195rpx;
 }
 
 .deMain {
   width: 100%;
-  height: 165rpx;
+  height: 185rpx;
   margin-top: 10rpx;
   background: #fff;
   padding: 0 30rpx;

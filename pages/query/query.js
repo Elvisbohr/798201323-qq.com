@@ -9,15 +9,17 @@ Page({
       '../../img/weather/wbj4.png'
     ],
     tachstrategy: '',
+    tapStrategy:'最快捷模式',
     strategy: [
-      { num: '0', name: '最快捷模式' },
-      { num: '1', name: '最经济模式' },
-      { num: '2', name: '最少换乘模式' },
-      { num: '3', name: '最少步行模式' },
-      { num: '4', name: '不乘地铁模式' },
+      { num: '0', name: '最快捷模式', upjt:true, },
+      { num: '1', name: '最经济模式', upjt: false,},
+      { num: '2', name: '最少换乘模式', upjt: false,},
+      { num: '3', name: '最少步行模式', upjt: false,},
+      { num: '4', name: '不乘地铁模式', upjt: false, },
 
     ],
-    pathList: true,
+    pathList: false, //其他公交换乘策略
+    upjt:false,
     bindStrategy: 0, //默认公交换乘策略为 "0：最快捷模式"
   },
 
@@ -32,28 +34,58 @@ Page({
         that.setData({
           queryLocatuin: res.data,
         })
-        console.log(11111)
         that.getNavBus();
       }
     })
 
   },
-
+  // 公交换乘策略(点击显示)
+  bindpath:function(){
+    var that = this;
+    that.setData({
+      pathList: (!that.data.pathList),
+    })
+  },
+  //点击公交换乘策略切换
+  bindstrat:function(e){
+    var that = this;
+    var strategy = that.data.strategy;  //声明公交换乘策略数组
+    var tapStrategy = that.data.tapStrategy;  //声明点击后要赋值的数组
+    // console.log(strategy)
+    // console.log(e.currentTarget.dataset.num)
+    var num = e.currentTarget.dataset.num;  //声明点击的是数组的num
+    var bindStrategy = that.data.bindStrategy; //声明当前选择的乘车策略
+    //使用find方法查找到当前为true的唯一元素改为false然后下一步进行赋值
+    var s = strategy.find(function(v){    //根据唯一标识查找数组里唯一的元素
+        return v.upjt == true ;
+    })
+    s.upjt = false; //把查找到的这个唯一元素改为false
+    strategy[num].upjt = !(strategy[num].upjt);
+    tapStrategy = strategy[num].name;
+    that.setData({
+      strategy: strategy,
+      pathList:false,
+      tapStrategy: tapStrategy,
+      bindStrategy: num
+    })
+    that.getNavBus();
+  },
   // 公交策略
   getNavBus: function () {
     var that = this;
     var bindStrategy = that.data.bindStrategy;  //获取选择的公交换乘策略
     var key = config.Config.key;
     var myAmapFun = new amapFile.AMapWX({ key: key });
-    var origin = that.data.queryLocatuin.startLocation
-    console.log(origin)
+    // var origin = that.data.queryLocatuin.startLocation
+    // console.log(origin)
     myAmapFun.getTransitRoute({
       origin: that.data.queryLocatuin.startLocation,
       destination: that.data.queryLocatuin.endLocation,
       city: '太原市',
       strategy: bindStrategy,
       success: function (data) {
-        // console.log(data)
+        console.log('data')
+        console.log(data)
         if (data && data.transits) {
           var transits = data.transits;
           for (var i = 0; i < transits.length; i++) {
@@ -66,7 +98,7 @@ Page({
             transits[i].departureStop = departureStop;
             var standNum = segments[0].bus.buslines[0].via_num;
             transits[i].standNum = standNum;
-            console.log(departureStop)
+            // console.log(departureStop)
             transits[i].transport = [];
             for (var j = 0; j < segments.length; j++) {
               if (segments[j].bus && segments[j].bus.buslines && segments[j].bus.buslines[0] && segments[j].bus.buslines[0].name) {
@@ -87,7 +119,8 @@ Page({
         app.globalData.transits = transits; //赋值到全局变量里
       },
       fail: function (info) {
-
+        console.log('info');
+        console.log(info);
       }
     })
   },
@@ -114,7 +147,7 @@ Page({
     if (theTime2 > 0) {
       result = "" + parseInt(theTime2) + "小时" + result;
     }
-    console.log(result); 
+    // console.log(result); 
     return result;
     
   }

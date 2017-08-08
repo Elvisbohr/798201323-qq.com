@@ -1,6 +1,6 @@
 <!--pages/details/details.wxml-->
 <view class="pages">
-  <swiper class="decon" indicator-dots="true" bindchange="decon" current="{{busNum}}">
+  <swiper class="decon" indicator-dots="true" bindchange="decon" current="{{busNum}}" indicator-color="#e5e5e5" indicator-active-color="#ffa800">
     <block wx:for="{{transits}}" wx:for-item="i">
       <swiper-item>
         <view class="deMain flex fd">
@@ -45,13 +45,13 @@
                   <view class="getIcon icony">上</view>
                   <view class="">{{i.departureStop}}</view>
                 </view>
-                <view class="sitNum" bindtap="details" data-details="{{index}}">
+                <view class="sitNum" bindtap="details" data-num="{{index}}">
                   {{i.viaNum}}站
                   <image class="sitNumImg" mode="widthFix" src="../../img/jt.png"></image>
                 </view>
               </view>
-              <view class="getMiddle"  wx:if="{{middle}}">
-                <block wx:for="{{i.viaStops}}" wx:for-item="v"  wx:if="{{details}}">
+              <view class="getMiddle"  wx:if="{{i.stopsNum}}">
+                <block wx:for="{{i.viaStops}}" wx:for-item="v"  >
                   <view class="mList flex vc">
                     <view class="getIcon flex hc vc">
                       <view class="geryuan"></view>
