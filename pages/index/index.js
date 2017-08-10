@@ -5,11 +5,23 @@ var config = require('../../libs/config.js');
 var app = getApp()
 Page({
   data: {
-    weather: {} //获取天气信息
+    weather: {}, //获取天气信息
+    start:true,   //启动页整体
+    // startAnim: true
   },
 
   onLoad: function () {
     var that = this;
+    var startAnim = that.data.startAnim;
+    startAnim = true;
+    setTimeout(function(){
+      var start = that.data.start;
+      start = false;
+      that.setData({
+        start: start,
+      })
+    },4000)
+    
     this.getWeather();
     this.getLocation();
   },
@@ -32,33 +44,33 @@ Page({
         }
         // 更改背景
         if (weather.liveData.weather == '晴') {
-          weather.liveData["wbjImg"] = "../../img/weather/wbj1.png";
+          weather.liveData["wbjImg"] = app.globalData.serverAddress +"/jws/upload/ccgj/wbj1.png";
         } else if (weather.liveData.weather == '阴' || weather.liveData.weather == '多云') {
-          weather.liveData["wbjImg"] = "../../img/weather/wbj2.png";
+          weather.liveData["wbjImg"] = app.globalData.serverAddress +"/jws/upload/ccgj/wbj2.png";
         } else if (weather.liveData.weather == '雷阵雨' || '雷阵雨并伴有冰雹') {
-          weather.liveData["wbjImg"] = "../../img/weather/wbj3.png";
+          weather.liveData["wbjImg"] = app.globalData.serverAddress +"/jws/upload/ccgj/wbj3.png";
         } else if (weather.liveData.weather == '大雨' || weather.liveData.weather == '暴雨' || weather.liveData.weather == '大暴雨' || weather.liveData.weather == '特大暴雨' || weather.liveData.weather == '冻雨' || weather.liveData.weather == '小雨- 中雨' || weather.liveData.weather == '中雨- 大雨' || weather.liveData.weather == '大雨- 暴雨' || weather.liveData.weather == '暴雨- 大暴雨' || weather.liveData.weather == '大暴雨- 特大暴雨') {
-          weather.liveData["wbjImg"] = "../../img/weather/wbj4.png";
+          weather.liveData["wbjImg"] = app.globalData.serverAddress +"/jws/upload/ccgj/wbj4.png";
         } else if (weather.liveData.weather == '阵雨' || weather.liveData.weather == '雨夹雪' || weather.liveData.weather == ' 小雨' || weather.liveData.weather ==  '中雨') {
-          weather.liveData["wbjImg"] = "../../img/weather/wbj5.png";
+          weather.liveData["wbjImg"] = app.globalData.serverAddress +"/jws/upload/ccgj/wbj5.png";
         } else if (weather.liveData.weather == '阵雪' || weather.liveData.weather == '小雪' || weather.liveData.weather == '中雪' || weather.liveData.weather == '大雪' || weather.liveData.weather == '暴雪' || weather.liveData.weather == '小雪- 中雪' || weather.liveData.weather == '中雪- 大雪' || weather.liveData.weather == '大雪- 暴雪') {
-          weather.liveData["wbjImg"] = "../../img/weather/wbj6.png";
+          weather.liveData["wbjImg"] = app.globalData.serverAddress +"/jws/upload/ccgj/wbj6.png";
         } else if (weather.liveData.weather == '雾') {
-          weather.liveData["wbjImg"] = "../../img/weather/wbj7.png";
+          weather.liveData["wbjImg"] = app.globalData.serverAddress +"/jws/upload/ccgj/wbj7.png";
         } else if (weather.liveData.weather == '沙尘暴' || weather.liveData.weather == '强沙尘暴') {
-          weather.liveData["wbjImg"] = "../../img/weather/wbj8.png";
+          weather.liveData["wbjImg"] = app.globalData.serverAddress +"/jws/upload/ccgj/wbj8.png";
         } else if (weather.liveData.weather == '浮尘' || weather.liveData.weather == '扬沙') {
-          weather.liveData["wbjImg"] = "../../img/weather/wbj9.png";
+          weather.liveData["wbjImg"] = app.globalData.serverAddress +"/jws/upload/ccgj/wbj9.png";
         } else if (weather.liveData.weather == '龙卷风' || weather.liveData.weather == '飑') {
-          weather.liveData["wbjImg"] = "../../img/weather/wbj10.png";
+          weather.liveData["wbjImg"] = app.globalData.serverAddress +"/jws/upload/ccgj/wbj10.png";
         } else if (weather.liveData.weather == '弱高吹雪') {
-          weather.liveData["wbjImg"] = "../../img/weather/wbj11.png";
+          weather.liveData["wbjImg"] = app.globalData.serverAddress +"/jws/upload/ccgj/wbj11.png";
         } else if (weather.liveData.weather == '轻霾' || weather.liveData.weather ==  '霾') {
-          weather.liveData["wbjImg"] = "../../img/weather/wbj12.png";
+          weather.liveData["wbjImg"] = app.globalData.serverAddress +"/jws/upload/ccgj/wbj12.png";
         }
         that.setData({
-            weather: weather,
-          })
+          weather: weather,
+        })
         
       },
       fail: function (info) {
@@ -205,12 +217,12 @@ Page({
     if (curIndex == "hot_word0") {
       that.setData({
         // startPlaceVal: value,
-        hotWord0: false,
+        // hotWord0: false,
       })
     } else if (curIndex == "hot_word1") {
       that.setData({
         // endPlaceVal: value,
-        hotWord1: false,
+        // hotWord1: false,
       })
     }
   },
@@ -228,9 +240,17 @@ Page({
     if (startPlaceVal == '' || startPlaceVal == undefined) {
       msg = '请输入出发地';
       console.log('请输入出发地')
+      that.setData({
+        hotWord0: false,
+        hotWord1: false,
+      })
     } else if (endPlaceVal == '' || endPlaceVal == undefined) {
       msg = '请输入目的地';
       console.log('请输入目的地')
+      that.setData({
+        hotWord0: false,
+        hotWord1: false,
+      })
     } else {
 
       if (startLocation == '' || startLocation == undefined) {
@@ -264,6 +284,10 @@ Page({
         // console.log(queryLocatuin)
         wx.navigateTo({
           url: '../query/query'
+        });
+        that.setData({
+          hotWord0: false,
+          hotWord1: false,
         })
     
     }

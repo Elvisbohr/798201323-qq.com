@@ -1,4 +1,21 @@
 <!--index.wxml-->
+<!-- 启动页 -->
+<view class="start" wx:if="{{start}}">
+  <view class="startMain">
+    <view class="startHead">
+      <image  class="startBj" src="../../img/start.png"></image>
+      <view class="startCon">
+        <image class="startLogo" src="../../img/startlogo.png"></image>
+        <view class="startTit">便捷查询 出行随心 !</view>
+      </view>
+    </view>
+    <view class="startFoot">
+      <image class="startFootBj" mode="widthFix" src="../../img/startfoot.png"></image>
+      <view class="startfootName">大集方圆科技有限公司</view>
+    </view>
+  </view>
+</view>
+<!-- 启动页End  -->
 <view class="pages">
   <view class="head">
     <image class="weatherBj" src="{{weather.liveData.wbjImg}}"></image>
@@ -23,7 +40,7 @@
           <input name="start_place" data-class-name="hot_word0" bindinput="bindKeyInput" bindblur="inputOnFocus" placeholder="请输入起始地" value="{{startPlaceVal}}" />
         </view>
         <scroll-view wx:if="{{hotWord0}}" class="searchList" scroll-y>
-          <view class="text_box"  bindtap="setInputVal" wx:for="{{hotWordArr0}}" wx:for-item="dataItem" data-text="{{dataItem}}" data-index="{{index}}" data-input-class="start_place">
+          <view class="text_box" bindtap="setInputVal" wx:for="{{hotWordArr0}}" wx:for-item="dataItem" data-text="{{dataItem}}" data-index="{{index}}" data-input-class="start_place">
             {{dataItem}}
           </view>
         </scroll-view>
@@ -31,7 +48,7 @@
       <view class="relative">
         <view class="search flex vc">
           <image class="locImg" mode="widthFix" src="../../img/weather/location.png"></image>
-          <input name="end_place"  bindinput="bindKeyInput" placeholder="请输入目的地" bindblur="inputOnFocus"  data-class-name="hot_word1" value="{{endPlaceVal}}" />
+          <input name="end_place" bindinput="bindKeyInput" placeholder="请输入目的地" bindblur="inputOnFocus" data-class-name="hot_word1" value="{{endPlaceVal}}" />
         </view>
         <scroll-view wx:if="{{hotWord1}}" class="searchList" scroll-y>
           <view bindtap="setInputVal" wx:for="{{hotWordArr1}}" wx:for-item="dataItem" data-text="{{dataItem}}" data-index="{{index}}" data-input-class="end_place" class="text_box">
@@ -43,5 +60,9 @@
 
     </view>
   </form>
+  <!-- 底部 -->
   <image class="gslogo" src="../../img/weather/gslogo.png"></image>
+  <!-- 底部End -->
+
+
 </view>

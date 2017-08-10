@@ -1,12 +1,13 @@
 // pages/query/query.js
+var app = getApp();
 var amapFile = require('../../libs/amap-wx.js');
 var config = require('../../libs/config.js');
 var app = getApp();
 Page({
   data: {
     advertising: [
-      '../../img/weather/wbj1.png',
-      '../../img/weather/wbj4.png'
+      { url: app.globalData.serverAddress + '/jws/upload/ccgj/5566.gif', toform: 'wxfc5733e5e843b64a' },
+      // { url: app.globalData.serverAddress +'/jws/upload/ccgj/wbj4.png', toform:'wxfc5733e5e843b64a'}, 
     ],
     tachstrategy: '',
     tapStrategy:'最快捷模式',
@@ -38,6 +39,37 @@ Page({
       }
     })
 
+  },
+  //点击跳转到其他小程序
+  advertis:function(e){
+    // console.log(e.currentTarget.dataset.index)
+    var that = this;
+    var advertising = that.data.advertising;
+    console.log(advertising)    
+    var num = e.currentTarget.dataset.index;
+    console.log(num)    
+    var sAppid = advertising[num].toform
+    console.log(sAppid)
+    wx.navigateToMiniProgram({
+      appId: sAppid,
+      // path: 'pages/index/index', //跳转后进入的页面不填默认首页
+      // envVersion: 'develop', //要打开的小程序版本非必填
+      success(res) {
+        // 打开成功
+        wx.showToast({
+          title: '正在跳转',
+          icon: 'success',
+          duration: 1500
+        })
+      },
+      fail(){
+        wx.showToast({
+          title: '跳转失败',
+          icon: 'success',
+          duration: 1500
+        })
+      }
+    })
   },
   // 公交换乘策略(点击显示)
   bindpath:function(){

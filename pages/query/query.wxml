@@ -3,8 +3,8 @@
   <view class="queryMain">
     <swiper class="qHead">
       <block wx:for="{{advertising}}">
-        <swiper-item>
-          <image src="{{item}}" class="advertising" />
+        <swiper-item bindtap="advertis" data-index="{{index}}">
+          <image src="{{item.url}}" class="advertising" />
         </swiper-item>
       </block>
     </swiper>
