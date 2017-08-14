@@ -159,3 +159,21 @@ page {
   width: 20rpx;
   
 }
+.maybe{
+  margin: 15rpx 0;
+  font-size: 24rpx;
+}
+.or{
+  margin-left: 80rpx;
+  margin-right: 20rpx;
+  background: #62be07;
+  color: #fff;
+  padding: 5rpx;
+  border-radius: 6rpx;
+}
+.orList{
+  margin-right: 10rpx;
+}
+.orList:nth-child(2){
+   display: none; 
+}

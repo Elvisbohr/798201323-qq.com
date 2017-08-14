@@ -3,7 +3,7 @@ var app = getApp();
 Page({
   data: {
     details: false,      //是否显示全部公交站点名称默认不显示
-
+    // maybe : false,      
   },
   //点击切换显示全部站点
   details:function(e){
@@ -53,7 +53,8 @@ Page({
     var busNum = num;
     // console.log(busNum)
     var circuit = transits[busNum]  //获取当前的乘车线路的详细信息
-    // console.log(circuit);
+    // console.log(circuit.transport);
+  
     var segments = circuit.segments   //获取所有换乘路段列表
     for (var i = 0; i < segments.length; i++){
       segments[i].stopsNum = false;
@@ -61,8 +62,10 @@ Page({
       // console.log(stopsNum)
       // console.log(segments[i].walking.steps)
       var steps = segments[i].walking.steps;  //什么该导航路段的数组方便下面遍历
-      var walk = segments[i].walking.steps[steps.length-1].instruction;
+      if (segments[i].walking.steps != undefined){      
+        var walk = segments[i].walking.steps[steps.length-1].instruction;
       // console.log(walk);
+      }
       segments[i].describe = walk   //往数组里添加解析好的步行的数据
       if (segments[i].bus.buslines[0] != undefined){  //判断如果不等于undefined就往数组里添加解析后的线路数据
         var departureStop = segments[i].bus.buslines[0].departure_stop.name;  //声明此段起乘站
@@ -82,6 +85,22 @@ Page({
         }
         segments[i].viaStops = viaStopsName;  //将途经的公交站名称放入新的数组里
         
+        var orBusName = [];    //声明一个此段途经公交站点的公交车名称的数组
+        var orbus = segments[i].bus.buslines;   //找到数组里面公交站点是数组准备循环找name
+        for (var o = 0; o < orbus.length; o++) {
+          var busname = orbus[o].name;
+          var sbussame = busname.replace(/\(.*\)$/g, "")
+          orBusName.push(sbussame);  //往数组的末尾添加一个或多个元素{push}        
+        }
+        segments[i].orBusName = orBusName;  //将途经的公交站名称放入新的数组里
+        var maybe = segments[i].maybe;  //是否有相同站点不同车
+        if (orBusName.length > 1) {
+          maybe = true;
+        } else {
+          // var maybe = that.data.maybe
+          maybe = false;
+        };
+        segments[i].maybe = maybe;
       }
       //开始判断起点终点的名称
       circuit.site = [];
@@ -101,6 +120,7 @@ Page({
    
     that.setData({
       circuit: circuit,
+      maybe: maybe,
     })
   }
   

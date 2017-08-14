@@ -60,6 +60,12 @@
                   </view>
                 </block>
               </view>
+              <view class="maybe flex vc" wx:if="{{i.maybe}}">
+                <view class="or">或</view>
+                <block wx:for="{{i.orBusName}}">
+                  <view class="orList">{{item}}</view>
+                </block>
+              </view>
               <view class="getOff">
                 <view class="flex vc">
                   <view class="getIcon icony">下</view>

@@ -134,13 +134,20 @@ Page({
             transits[i].transport = [];
             for (var j = 0; j < segments.length; j++) {
               if (segments[j].bus && segments[j].bus.buslines && segments[j].bus.buslines[0] && segments[j].bus.buslines[0].name) {
-                var name = segments[j].bus.buslines[0].name;
+                var name = segments[j].bus.buslines[0].name;    //旧
+                for(var b = 0; b<segments[j].bus.buslines.length; b++){
+                  var name = segments[j].bus.buslines[b].name ;
+                  // console.log('allname')
+                  // console.log(name)
+                  
+                
                 var sname = name.replace(/\(.*\)$/g, "");   //用正则判断去掉()里的内容
                 // console.log(sname)
                 if (j !== 0) {
                   sname = '-->' + sname;
                 }
                 transits[i].transport.push(sname);
+                } 
               }
             }
           }
@@ -181,6 +188,25 @@ Page({
     }
     // console.log(result); 
     return result;
-    
+  },
+  // 转发
+  onShareAppMessage: function (res) {
+    var that = this;
+    var queryLocatuin = that.data.queryLocatuin;
+    if (res.from === 'button') {
+      // 来自页面内转发按钮
+      console.log(res.target)
+    }
+    return {
+      title: '查查公交',
+      path: 'pages/query/query?queryLocatuin',
+      success: function (res) {
+        // 转发成功
+        // console.log(res)
+      },
+      fail: function (res) {
+        // 转发失败
+      }
+    }
   }
 })
