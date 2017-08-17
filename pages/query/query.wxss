@@ -99,6 +99,9 @@ page{
   font-size: 28rpx;
   font-weight: bold;
 }
+.cNameList{
+  padding-right: 8rpx;
+}
 .cScz{
   height: 50rpx;
   line-height: 50rpx;

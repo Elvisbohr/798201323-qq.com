@@ -34,7 +34,7 @@
         
         <view class="cirR">
           <view class="cName vc">
-            <text class="" wx:for="{{i.transport}}" wx:for-item="j">
+            <text class="cNameList" wx:for="{{i.transport}}" wx:for-item="j">
               {{j}}
             </text>
           </view>
